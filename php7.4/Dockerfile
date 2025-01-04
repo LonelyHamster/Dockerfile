@@ -28,6 +28,7 @@ RUN docker-php-ext-install xml
 RUN docker-php-ext-install bcmath
 RUN docker-php-ext-install dom
 RUN docker-php-ext-install fileinfo
+RUN docker-php-ext-install exif
 
 # 安装 GD 扩展
 RUN docker-php-ext-configure gd --with-jpeg --with-freetype \
@@ -43,3 +44,8 @@ RUN pecl install memcached \
 
 # 安装 Composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+
+# 安装 Swoole
+RUN pecl install swoole-4.8.12 \
+    && docker-php-ext-enable swoole
+
